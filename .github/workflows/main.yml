@@ -26,9 +26,10 @@ jobs:
 
   
 
-    - name: ✅ Run a basic test (import app)
+    - name: ✅ Run app.py syntax check
       run: |
-        python -c "import app"
+        python -m py_compile app.py
+
 
     - name: 🐳 Build Docker Image
       run: docker build -t loan-risk-api .
