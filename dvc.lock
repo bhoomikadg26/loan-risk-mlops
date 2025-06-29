@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/loan.csv
+      hash: md5
+      md5: 3bc055a1d2cca0386fa2d03864fe9b0a
+      size: 38013
+    - path: src/preprocess.py
+      hash: md5
+      md5: 7b06764bd8933678f3dbd95a2b495cb4
+      size: 334
+    outs:
+    - path: data/processed/clean_loan.csv
+      hash: md5
+      md5: 04ac5e972360078b334529b9459cb6eb
+      size: 43070
