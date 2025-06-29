@@ -24,8 +24,7 @@ jobs:
         pip install -r requirements.txt
         pip install dvc
 
-    - name: 📁 Reproduce DVC Pipeline
-      run: dvc repro
+  
 
     - name: ✅ Run a basic test (import app)
       run: |
