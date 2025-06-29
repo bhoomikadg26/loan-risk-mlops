@@ -1,0 +1,45 @@
+name: CI/CD Pipeline for Loan Risk App
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout Code
+      uses: actions/checkout@v3
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: 📦 Install Dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install dvc
+
+    - name: 📁 Reproduce DVC Pipeline
+      run: dvc repro
+
+    - name: ✅ Run a basic test (import app)
+      run: |
+        python -c "import app"
+
+    - name: 🐳 Build Docker Image
+      run: docker build -t loan-risk-api .
+
+    # OPTIONAL: DockerHub push
+    # - name: 🔐 Login to DockerHub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # - name: 🚀 Push to DockerHub
+    #   run: docker push loan-risk-api
