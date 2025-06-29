@@ -16,3 +16,23 @@ stages:
       hash: md5
       md5: 04ac5e972360078b334529b9459cb6eb
       size: 43070
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/clean_loan.csv
+      hash: md5
+      md5: 04ac5e972360078b334529b9459cb6eb
+      size: 43070
+    - path: params.yaml
+      hash: md5
+      md5: 9fb3d3ff03e12cd6fe52c2367169da10
+      size: 63
+    - path: src/train.py
+      hash: md5
+      md5: 5779516087747c0fcd4c418e043cc847
+      size: 1427
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: d1c19cd9bbbee1716bef96431e742df6
+      size: 234457
